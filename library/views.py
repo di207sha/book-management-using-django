@@ -9,3 +9,5 @@ def viewbook(request):
     return render(request,"viewbook.html")
 def login(request):
     return render(request,"login.html")
+def addbook(request):
+    return render(request,"addbook.html")
