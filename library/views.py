@@ -11,16 +11,33 @@ def viewbook(request):
 def login(request):
     return render(request,"login.html")
 def addbook(request):
-    if request.method=="POST":
-        i=request.POST["isbn no"]
-        t=request.POST["title"]
-        a=request.POST["author"]
-        y=request.POST["year"]
-        book=Book()
-        book.isbn_no=i
-        book.book_name=t
-        book.author_name=a
-        book.published_year=y
-        book.save()
-        return HttpResponse("/add-book")
     return render(request,"addbook.html")
+def add1(request):
+    if request.method == 'POST':
+        isbn_no = request.POST.get('isbn_no')
+        book_name = request.POST.get('title')
+        author_name = request.POST.get('author')
+        published_year = request.POST.get('year')
+
+        # Check if all fields are provided
+        if isbn_no and book_name and author_name and published_year:
+            try:
+                # Convert isbn_no and published_year to integers
+                isbn_no = int(isbn_no)
+                published_year = int(published_year)
+                
+                # Create and save a new book entry
+                Book.objects.create(
+                    isbn_no=isbn_no,
+                    book_name=book_name,
+                    author_name=author_name,
+                    published_year=published_year
+                )
+                return HttpResponse('Book added successfully!')
+            except ValueError:
+                return HttpResponse('Invalid data format. Please check your input.')
+            except Exception as e:
+                return HttpResponse(f'Error occurred: {e}')
+        else:
+            return HttpResponse('All fields are required!')
+    return render(request, 'addbook.html')

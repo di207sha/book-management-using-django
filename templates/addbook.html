@@ -28,26 +28,26 @@
 <body>
 
 <div class="signup-container">
-    <form class="signup-form" action="/"  method="post">
+    <form class="signup-form" action="/add-book/add"  method="post">
         {% csrf_token %}
         <h2 class="text-center">add book</h2>
         <div class="form-group">
-            <label for="isbn no" >ISBN no</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+            <label for="isbn_no" >ISBN no</label>
+            <input type="text" class="form-control" id="username" name="isbn_no" placeholder="Enter username" required>
         </div>
         
         
         <div class="form-group">
             <label for="title">Book-title</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            <input type="text" class="form-control" name="title" required>
         </div>
         <div class="form-group">
             <label for="author">Book-author</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            <input type="text" class="form-control"name="author"  required>
         </div>
         <div class="form-group">
             <label for="year">Book-publish year</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            <input type="text" class="form-control" name="year" required>
         </div>
         
         
